@@ -9,9 +9,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,7 +42,9 @@ fun ArticlesScreen(
     LaunchedEffect(Unit) {
         viewModel.getArticles()
     }
-    ArticlesView(viewModel)
+    ArticlesView(
+        viewModel
+    )
 }
 
 @Composable
@@ -47,33 +53,20 @@ fun ArticlesView(
 ) {
     val state by viewModel.state.collectAsState()
 
-    Scaffold(
-        topBar = {
-            AppTopAppBar(
-                "Articles"
-            )
-        }
-    ) { innerPadding ->
-        when (val currentState = state) {
-            is ArticlesState.Loading -> LoadingView(
-                Modifier.padding(innerPadding)
-            )
-            is ArticlesState.Success -> ContentView(
-                currentState.articles,
-                Modifier.padding(innerPadding)
-            )
-            is ArticlesState.Error -> ErrorView(
-                currentState.message,
-                Modifier.padding(innerPadding)
-            )
-        }
+    when (val currentState = state) {
+        is ArticlesState.Loading -> LoadingView()
+        is ArticlesState.Success -> ContentView(
+            currentState.articles
+        )
+        is ArticlesState.Error -> ErrorView(
+            currentState.message
+        )
     }
 }
 
 @Composable
-private fun LoadingView(modifier: Modifier = Modifier) {
+private fun LoadingView() {
     Box(
-        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
@@ -85,11 +78,9 @@ private fun LoadingView(modifier: Modifier = Modifier) {
 
 @Composable
 fun ErrorView(
-    message: String,
-    modifier: Modifier = Modifier
+    message: String
 ) {
     Box(
-        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -101,13 +92,9 @@ fun ErrorView(
 
 @Composable
 private fun ContentView(
-    articles: List<Article>,
-    modifier: Modifier = Modifier
+    articles: List<Article>
 ) {
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-    ) {
+    LazyColumn {
         items(articles) { article ->
             ArticleItemView(article)
         }
