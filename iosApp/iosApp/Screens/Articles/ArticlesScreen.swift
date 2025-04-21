@@ -17,7 +17,7 @@ struct ArticlesScreen: View {
             ArticlesView()
                 .navigationTitle("Articles")
                 .toolbar {
-                    toolbarContentView($shouldOpenAbout)
+                    ToolbarContentView($shouldOpenAbout)
                 }
         }
     }
@@ -98,7 +98,7 @@ private struct ArticleItemView: View {
 }
 
 @ToolbarContentBuilder
-private func toolbarContentView(_ shouldOpenAbout: Binding<Bool>) -> some ToolbarContent {
+private func ToolbarContentView(_ shouldOpenAbout: Binding<Bool>) -> some ToolbarContent {
     ToolbarItem {
         Button {
             shouldOpenAbout.wrappedValue = true
