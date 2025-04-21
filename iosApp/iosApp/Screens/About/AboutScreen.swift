@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct AboutScreen: View {
     @Environment(\.dismiss) private var dismiss
@@ -19,6 +20,35 @@ struct AboutScreen: View {
                     ToolbarContentView(dismiss)
                 }
         }
+    }
+}
+
+private struct AboutView: View {
+    private let items: [AboutInformation] = {
+        AboutData().informations()
+    }()
+    
+    var body: some View {
+        List {
+            ForEach(items, id: \.self) { item in
+                RowView(title: item.title, subtitle: item.subtitle)
+            }
+        }
+    }
+}
+
+private struct RowView: View {
+    let title: String
+    let subtitle: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.headline)
+            Text(subtitle)
+                .font(.caption)
+        }
+        .padding(.vertical, 4)
     }
 }
 
