@@ -2,20 +2,14 @@ package com.cgs.dailypulse.screens.articles
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,7 +27,6 @@ import com.cgs.dailypulse.articles.Article
 import com.cgs.dailypulse.articles.ArticlesState
 import com.cgs.dailypulse.articles.ArticlesViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.cgs.dailypulse.composables.AppTopAppBar
 
 @Composable
 fun ArticlesScreen(
