@@ -10,10 +10,15 @@ import SwiftUI
 import Shared
 
 struct ArticlesScreen: View {
+    @State var shouldOpenAbout = false
+    
     var body: some View {
         NavigationStack {
             ArticlesView()
                 .navigationTitle("Articles")
+                .toolbar {
+                    toolbarContentView($shouldOpenAbout)
+                }
         }
     }
 }
@@ -89,6 +94,20 @@ private struct ArticleItemView: View {
             Text(article.date).frame(maxWidth: .infinity, alignment: .trailing).foregroundStyle(.gray)
         }
         .padding(16)
+    }
+}
+
+@ToolbarContentBuilder
+private func toolbarContentView(_ shouldOpenAbout: Binding<Bool>) -> some ToolbarContent {
+    ToolbarItem {
+        Button {
+            shouldOpenAbout.wrappedValue = true
+        } label: {
+            Label("About", systemImage: "info.circle").labelStyle(.titleAndIcon)
+        }
+        .popover(isPresented: shouldOpenAbout) {
+            AboutScreen()
+        }
     }
 }
 
