@@ -19,6 +19,7 @@ kotlinxCoroutinesCore = "1.7.3"
 lifecycleViewmodel = "2.8.7"
 navigationCompose = "2.8.9"
 ktor = "3.0.3"
+kotlinxDatetime = "0.6.0"
 
 [libraries]
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
@@ -43,6 +44,7 @@ ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "k
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
