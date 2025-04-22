@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import co.touchlab.skie.configuration.FlowInterop
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     id("co.touchlab.skie") version "0.10.1"
+    kotlin("plugin.serialization") version "1.9.20"
 }
 
 kotlin {
@@ -29,15 +29,19 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.serialization.kotlinx)
+            implementation(libs.ktor.client.content.negotiation)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.lifecycle.viewmodel.ktx)
+            implementation(libs.ktor.client.android)
         }
 
         iosMain.dependencies {
-            // iOS Dependencies
+            implementation(libs.ktor.client.darwin)
         }
     }
 }

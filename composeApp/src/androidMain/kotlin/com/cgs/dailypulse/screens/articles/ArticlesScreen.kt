@@ -104,7 +104,7 @@ private fun ArticleItemView(
             contentDescription = "Article image"
         )
         Text(text = article.title, style = MaterialTheme.typography.h6)
-        Text(text = article.articleDescription)
+        Text(text = article.articleDescription ?: "Click to learn more")
         Text(
             text = article.date,
             modifier = Modifier.fillMaxWidth(),

@@ -1,8 +1,19 @@
 package com.cgs.dailypulse.articles
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Article (
+    @SerialName("title")
     val title: String,
-    val articleDescription: String,
+
+    @SerialName("description")
+    val articleDescription: String?,
+
+    @SerialName("publishedAt")
     val date: String,
-    val imageUrl: String
+
+    @SerialName("urlToImage")
+    val imageUrl: String?
 )
